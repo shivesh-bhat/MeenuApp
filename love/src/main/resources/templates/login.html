@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>For My Favorite Girl 💗</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+
+<div class="hearts-container"></div>
+
+<div class="login-box">
+    <h1>Hieeeee my Bacchuuu❤️</h1>
+    <p>Enter our special date to unlock something made just for you💕</p>
+
+    <form method="post" action="/login">
+        <input type="password" name="password" placeholder="Our Special Date" required />
+        <button type="submit">Unlock💗</button>
+    </form>
+
+    <p th:if="${param.error}" class="error-msg">
+        Wrong password🥺 Try again love😘.
+    </p>
+</div>
+
+<script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (6 + Math.random() * 5) + "s";
+        heart.style.width = heart.style.height = (15 + Math.random() * 15) + "px";
+        document.querySelector(".hearts-container").appendChild(heart);
+        setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 800);
+</script>
+
+</body>
+</html>

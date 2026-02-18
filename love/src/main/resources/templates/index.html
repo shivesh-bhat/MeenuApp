@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>You Have All My Heart Meenu💗</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="hearts-container"></div>
+
+<button onclick="playMusic()" class="music-btn">Play Our Song 🎵</button>
+
+<audio id="bgMusic" loop>
+    <source th:src="@{/music/music.mp3}" type="audio/mpeg">
+</audio>
+
+<section class="hero">
+    <h1>You Deserve More Than One Day❤️</h1>
+    <p>I didn’t make Valentine’s special… but you are special every day.</p>
+</section>
+
+<section class="reasons">
+    <h2>Why You Mean So Much To Me💕</h2>
+    <div class="cards">
+        <div class="card" th:each="reason : ${reasons}">
+            <p th:text="${reason}"></p>
+        </div>
+    </div>
+</section>
+
+<section class="gallery-section">
+    <h2>Our Little Moments📸</h2>
+    <div class="polaroids">
+        <div class="polaroid">
+            <img th:src="@{/images/pic1.jpeg}">
+        </div>
+        <div class="polaroid">
+            <img th:src="@{/images/pic2.jpeg}">
+        </div>
+        <div class="polaroid">
+            <img th:src="@{/images/pic3.jpeg}">
+        </div>
+    </div>
+</section>
+
+<section class="apology">
+    <h2>I’m Truly Sorry Meenu💗</h2>
+    <p>
+        You gave me over a year of love.
+        I couldn’t give one day properly.
+        I’m not apologizing because I’m scared to lose you.
+        I’m apologizing because you deserve better from me.
+        I promise to make you feel special every single day.
+    </p>
+
+    <button onclick="celebrate()" class="forgive-btn">
+        Press If You Forgive Me🤍
+    </button>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+    function playMusic() {
+        document.getElementById("bgMusic").play();
+    }
+
+    function celebrate() {
+        confetti({
+            particleCount: 200,
+            spread: 100,
+            origin: { y: 0.6 }
+        });
+    }
+
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (6 + Math.random() * 5) + "s";
+        heart.style.width = heart.style.height = (15 + Math.random() * 15) + "px";
+        document.querySelector(".hearts-container").appendChild(heart);
+        setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 800);
+</script>
+
+</body>
+</html>
